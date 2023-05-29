@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 from sklearn.preprocessing import LabelEncoder
-import lightgbm as lgb
+from lightgbm import LGBMRegressor
 import numpy as np
 from sklearn.model_selection import train_test_split
 import pickle
@@ -168,7 +168,7 @@ def train_and_save_model():
 
     # perform feature importance
 
-    model = lgb.LGBMRegressor(
+    model = LGBMRegressor(
         boosting_type='gbdt',
         num_leaves=31,
         learning_rate=0.1,
