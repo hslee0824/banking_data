@@ -5,8 +5,12 @@
 </head>
 <body>
     <h1>Test 1</h1>
-    <p> This is index.html which located outside of templates folder <p>
-    <input type="text" id="name" name="name" required>
-    <button type="submit">Submit</button>
+    <p>This is index.html which located outside of the templates folder.</p>
+    
+    <form action="/greet" method="POST">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
