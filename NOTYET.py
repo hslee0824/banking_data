@@ -44,7 +44,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        return render_template("index1.html")
+        return render_template("index.html")
         file = request.files.get("file")
         if file is None or file.filename == "":
             return jsonify({"error" : "no file"})
