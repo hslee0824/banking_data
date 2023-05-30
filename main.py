@@ -7,7 +7,7 @@ import io
 with open('test/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 def cat_to_num(test):
     # MSSubClass are treat as categorical values
@@ -44,6 +44,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
+        return render_template("index1.html")
         file = request.files.get("file")
         if file is None or file.filename == "":
             return jsonify({"error" : "no file"})
@@ -58,7 +59,7 @@ def index():
 
         except Exception as e:
             return jsonify({"error" : str(e)})
-    return "OK"
+    return render_template("index2.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
