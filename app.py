@@ -8,7 +8,6 @@ def index():
 
 @app.route("/greet", methods=["POST"])
 def greet():
-    name = request.form.get("name")
     return render_template("index_2.html")
 
 if __name__ == "__main__":
