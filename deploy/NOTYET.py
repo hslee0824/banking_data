@@ -44,6 +44,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
+        return render_template("index.html")
         file = request.files.get("file")
         if file is None or file.filename == "":
             return jsonify({"error" : "no file"})
@@ -58,7 +59,7 @@ def index():
 
         except Exception as e:
             return jsonify({"error" : str(e)})
-    return render_template("result.html")
+    return render_template("index2.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
