@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 from lightgbm import LGBMRegressor
 import io
 
-with open('test/model.pkl', 'rb') as f:
+with open('../test/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 from flask import Flask, request, jsonify, render_template
