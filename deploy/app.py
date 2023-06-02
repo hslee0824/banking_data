@@ -8,7 +8,10 @@ with open('../test/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 sample_test = pd.read_csv('sample_test.csv')
+
 from flask import Flask, request, jsonify, render_template
+
+test = pd.read_csv('sample_test.csv')
 
 def cat_to_num(test):
     # MSSubClass are treat as categorical values
@@ -58,21 +61,25 @@ def process():
             inputs.update({col:input})
     print("Loaded all the inputs")
 
-    # Convert user inputs into DataFrame form
-    inputs_to_csv = pd.DataFrame(inputs, index=[0])
-    print("Convert inputs into Dataframe format")
+    # # Convert user inputs into DataFrame form
+    # inputs_to_csv = pd.DataFrame(inputs, index=[0])
+    # print("Convert inputs into Dataframe format")
 
     # # Save the user inputs
     # inputs_to_csv.to_csv("test_cols.csv", index=False)
 
-    # Perform prediction
-    result_cat_to_num = cat_to_num(inputs_to_csv)
-    print("Performed conversion categorical values into numeric")
+    # # Perform prediction
+    # result_cat_to_num = cat_to_num(inputs_to_csv)
+    # print("Performed conversion categorical values into numeric")
 
-    result_pred = predict(result_cat_to_num)
-    print("Successfully predicted value")
-    print("Result: ", result_pred)
-    
+    # result_pred = predict(result_cat_to_num)
+    # print("Successfully predicted value")
+    # print("Result: ", result_pred)
+
+    # --- Test with sample test --- 
+    test_cat_to_num = cat_to_num(sample_test)
+    result_pred = predict(test_cat_to_num)
+
     return render_template("result.html", result_pred=result_pred)
 if __name__ == "__main__":
     app.run(debug=True)
