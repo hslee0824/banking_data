@@ -44,9 +44,6 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        file = request.files.get("file")
-        if file is None or file.filename == "":
-            return jsonify({"error" : "no file"})
 
         try:
             test = pd.read_csv(io.StringIO(file.stream.read().decode("UTF8")))
