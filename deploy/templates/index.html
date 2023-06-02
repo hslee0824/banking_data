@@ -4,12 +4,18 @@
     <title>My Website</title>
 </head>
 <body>
-    <h1>Test 1</h1>
-    <p>This is index.html which INSIDE of the templates folder.</p>
+    <h1>Input Form</h1>
     
-    <form action="/greet" method="POST">
-        <label for="name">Enter your name:</label>
-        <input type="text" id="name" name="name" required>
+    <form action="/process" method="POST">
+        <label for="input1">Input 1:</label>
+        <input type="text" id="input1" name="input1" required>
+        
+        <label for="input2">Input 2:</label>
+        <input type="text" id="input2" name="input2" required>
+        
+        <label for="input3">Input 3:</label>
+        <input type="text" id="input3" name="input3" required>
+        
         <button type="submit">Submit</button>
     </form>
 </body>

@@ -41,21 +41,20 @@ def predict(x):
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def index():
-    if request.method == "POST":
+    return render_template("index.html")
 
-        try:
-            test = pd.read_csv(io.StringIO(file.stream.read().decode("UTF8")))
-            num_test = cat_to_num(test)
-            drop_Id_test = drop_ID(test)
-            prediction = predict(test)
-            data = {"Prediction" : prediction.tolist()}
-            return jsonify(data)
-
-        except Exception as e:
-            return jsonify({"error" : str(e)})
-    return render_template("result.html")
-
+@app.route("/process", methods=["POST"])
+def process():
+    input1 = request.form.get("input1")
+    input2 = request.form.get("input2")
+    input3 = request.form.get("input3")
+    
+    inputs = [input1, input2, input3]
+    
+    # Process the input values as needed
+    
+    return render_template("result.html", inputs=inputs)
 if __name__ == "__main__":
     app.run(debug=True)
