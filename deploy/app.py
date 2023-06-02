@@ -7,6 +7,7 @@ import io
 with open('../test/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
+sample_test = pd.read_csv('sample_test.csv')
 from flask import Flask, request, jsonify, render_template
 
 def cat_to_num(test):
@@ -47,14 +48,28 @@ def index():
 
 @app.route("/process", methods=["POST"])
 def process():
-    input1 = request.form.get("input1")
-    input2 = request.form.get("input2")
-    input3 = request.form.get("input3")
+    # Get user input from index.html
+    inputs={}
+    for col in sample_test.columns:
+        if col == 'Id':
+            continue
+        else:
+            input = request.form.get(col)
+            inputs.update({col:input})
+
+    # Convert user inputs into DataFrame form
+    inputs_to_csv = pd.DataFrame(inputs, index=[0])
+
+    # Save the user inputs
+    inputs_to_csv.to_csv("test_cols.csv", index=False)
     
-    inputs = [input1, input2, input3]
+    # Perform prediction
+    result_cat_to_num = cat_to_num(inputs_to_csv)
+    result_pred = predict(result_cat_to_num)
+
+    print(result_pred)
+
     
-    # Process the input values as needed
-    
-    return render_template("result.html", inputs=inputs)
+    return render_template("result.html", result_pred=result_pred)
 if __name__ == "__main__":
     app.run(debug=True)
