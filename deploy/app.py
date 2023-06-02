@@ -53,24 +53,26 @@ def process():
     for col in sample_test.columns:
         if col == 'Id':
             continue
-        if col == 'LotArea':
-            break
         else:
             input = request.form.get(col)
             inputs.update({col:input})
-    result_pred = inputs
-    # # Convert user inputs into DataFrame form
-    # inputs_to_csv = pd.DataFrame(inputs, index=[0])
+    print("Loaded all the inputs")
 
-    # # Save the user inputs
-    # inputs_to_csv.to_csv("test_cols.csv", index=False)
-    
-    # # Perform prediction
-    # result_cat_to_num = cat_to_num(inputs_to_csv)
-    # result_pred = predict(result_cat_to_num)
+    # Convert user inputs into DataFrame form
+    inputs_to_csv = pd.DataFrame(inputs, index=[0])
+    print("Convert inputs into Dataframe format")
 
-    # print(result_pred)
+    # Save the user inputs
+    inputs_to_csv.to_csv("test_cols.csv", index=False)
+    print("Saved inputs to csv file")
 
+    # Perform prediction
+    result_cat_to_num = cat_to_num(inputs_to_csv)
+    print("Performed conversion categorical values into numeric")
+
+    result_pred = predict(result_cat_to_num)
+    print("Successfully predicted value")
+    print("Result: ", result_pred)
     
     return render_template("result.html", result_pred=result_pred)
 if __name__ == "__main__":
