@@ -69,10 +69,9 @@ def process():
     result_cat_to_num = cat_to_num(inputs_to_csv)
     print("Performed conversion categorical values into numeric")
 
-    # result_pred = predict(result_cat_to_num)
-    # print("Successfully predicted value")
-    # print("Result: ", result_pred)
-    result_pred = inputs
+    result_pred = predict(result_cat_to_num)
+    print("Successfully predicted value")
+    print("Result: ", result_pred)
     
     return render_template("result.html", result_pred=result_pred)
 if __name__ == "__main__":
