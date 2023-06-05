@@ -75,14 +75,17 @@ def process():
     # Save the user inputs
     inputs_to_csv.to_csv("test_cols.csv", index=False)
 
-    # Drop unnecessary columns
-    result_drop_col = drop_col(inputs_to_csv)
+
 
     # Perform prediction
-    result_cat_to_num = cat_to_num(result_drop_col)
+    result_cat_to_num = cat_to_num(inputs_to_csv)
     print("Performed conversion categorical values into numeric")
 
-    result_pred = predict(result_cat_to_num)
+    # Drop unnecessary columns
+    result_drop_col = drop_col(result_cat_to_num)
+    print("Drop unnecessary columns")
+    
+    result_pred = predict(result_drop_col)
     print("Successfully predicted value")
     print("Result: ", result_pred)
 
