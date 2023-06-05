@@ -37,7 +37,8 @@ def drop_col(test):
     'GarageYrBlt', 'GarageCond', 'GarageType', 'GarageFinish', 'GarageQual',
     'BsmtFinType2', 'BsmtExposure', 'BsmtQual', 'BsmtCond', 'BsmtFinType1',
     'MasVnrArea', 'MasVnrType']
-    test.drop(columns=columns)
+    test = test.drop(columns=columns)
+    return test
 
 def drop_ID(test):
     # Drop ID for both train and test datasets.
@@ -69,8 +70,8 @@ def process():
     print("Loaded all the inputs")
 
     # # Convert user inputs into DataFrame form
-    # inputs_to_csv = pd.DataFrame(inputs, index=[0])
-    # print("Convert inputs into Dataframe format")
+    inputs_to_csv = pd.DataFrame(inputs, index=[0])
+    print("Convert inputs into Dataframe format")
 
     # # Save the user inputs
     # inputs_to_csv.to_csv("test_cols.csv", index=False)
@@ -87,12 +88,14 @@ def process():
     # print("Successfully predicted value")
     # print("Result: ", result_pred)
 
+
     sample_test_to_num = cat_to_num(sample_test)
+    
     sample_test_drop_col = drop_col(sample_test_to_num)
     result_pred = predict(sample_test_drop_col)
     print("Successfully predicted value")
     print("Result: ", result_pred)
-    
+
     return render_template("result.html", result_pred=result_pred)
 if __name__ == "__main__":
     app.run(debug=True)
