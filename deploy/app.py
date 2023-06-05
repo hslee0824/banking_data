@@ -32,6 +32,13 @@ def cat_to_num(test):
     print("\n")
     return test
 
+def drop_col(test):
+    columns = ['PoolQC', 'MiscFeature', 'Alley', 'Fence', 'FireplaceQu', 'LotFrontage',
+       'GarageYrBlt', 'GarageCond', 'GarageType', 'GarageFinish', 'GarageQual',
+       'BsmtFinType2', 'BsmtExposure', 'BsmtQual', 'BsmtCond', 'BsmtFinType1',
+       'MasVnrArea', 'MasVnrType']
+    test.drop(columns=columns)
+
 def drop_ID(test):
     # Drop ID for both train and test datasets.
     test.drop(columns='Id', inplace=True)
