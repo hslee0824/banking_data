@@ -73,9 +73,6 @@ def process():
     inputs_to_csv = pd.DataFrame(inputs, index=[0])
     print("Convert inputs into Dataframe format")
 
-    # Save the user inputs
-    inputs_to_csv.to_csv("test_cols.csv", index=False)
-
     # Perform prediction
     result_cat_to_num = cat_to_num(inputs_to_csv)
     print("Performed conversion categorical values into numeric")
@@ -83,6 +80,9 @@ def process():
     # Drop unnecessary columns
     result_drop_col = drop_col(result_cat_to_num)
     print("Drop unnecessary columns")
+
+    # Save the user inputs
+    result_drop_col.to_csv("test_cols.csv", index=False)
 
     result_pred = predict(result_drop_col)
     print("Successfully predicted value")
