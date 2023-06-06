@@ -14,30 +14,18 @@ from flask import Flask, request, jsonify, render_template
 test = pd.read_csv('sample_test.csv')
 
 def cat_to_num(test):
-    # MSSubClass are treat as categorical values
-    test['MSSubClass'] = test['MSSubClass'].apply(str)
-
-    # Year and month sold are transformed into categorical features.
-    test['YrSold'] = test['YrSold'].astype(str)
-    test['MoSold'] = test['MoSold'].astype(str)
-
-    # test label encoding
-    cols = list(test.select_dtypes(include='object').columns)
-    for c in cols:
-        lbl = LabelEncoder()
-        lbl.fit(list(test[c].values))
-        test[c] = lbl.transform(list(test[c].values))
-
+    # HAVE TO PERFORM LABEL ENCODING MANUALLY
+    
     print("Converted categorical data into numeric values")
     print("\n")
     return test
 
 def drop_col(test):
-    columns = ['PoolQC', 'MiscFeature', 'Alley', 'Fence', 'FireplaceQu', 'LotFrontage',
+    cols = ['PoolQC', 'MiscFeature', 'Alley', 'Fence', 'FireplaceQu', 'LotFrontage',
     'GarageYrBlt', 'GarageCond', 'GarageType', 'GarageFinish', 'GarageQual',
     'BsmtFinType2', 'BsmtExposure', 'BsmtQual', 'BsmtCond', 'BsmtFinType1',
     'MasVnrArea', 'MasVnrType']
-    test = test.drop(columns=columns)
+    test = test.drop(columns=cols)
     return test
 
 def drop_ID(test):
@@ -72,10 +60,14 @@ def process():
     # # Convert user inputs into DataFrame form
     inputs_to_csv = pd.DataFrame(inputs, index=[0])
     print("Convert inputs into Dataframe format")
+    print("Input:")
+    print(inputs_to_csv.head())
 
     # Perform prediction
     result_cat_to_num = cat_to_num(inputs_to_csv)
     print("Performed conversion categorical values into numeric")
+    print("After performing Label Encoding: ")
+    print(result_cat_to_num.head())
 
     # Drop unnecessary columns
     result_drop_col = drop_col(result_cat_to_num)
