@@ -15,7 +15,7 @@ test = pd.read_csv('sample_test.csv')
 
 def cat_to_num(test):
     # HAVE TO PERFORM LABEL ENCODING MANUALLY
-
+    
     print("Converted categorical data into numeric values")
     print("\n")
     return test
