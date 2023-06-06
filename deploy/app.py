@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 from lightgbm import LGBMRegressor
 import io
 
-with open('../test/simplified_model_rf.pkl', 'rb') as f:
+with open('../test/simplified_model_gbm.pkl', 'rb') as f:
     model = pickle.load(f)
 
 sample_test = pd.read_csv('sample_test.csv')
@@ -15,7 +15,7 @@ test = pd.read_csv('sample_test.csv')
 
 def cat_to_num(test):
     # HAVE TO PERFORM LABEL ENCODING MANUALLY
-    
+
     print("Converted categorical data into numeric values")
     print("\n")
     return test
