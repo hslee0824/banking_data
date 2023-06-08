@@ -4,8 +4,12 @@ from sklearn.preprocessing import LabelEncoder
 from lightgbm import LGBMRegressor
 import io
 
-with open('../test/simplified_model_gbm.pkl', 'rb') as f:
+with open('../test/simplified_model_rf.pkl', 'rb') as f:
     model = pickle.load(f)
+with open('../test/encoding_mapping.pkl', 'rb') as f:
+    encoding_mapping = pickle.load(f)
+with open('../test/object_cols.pkl', 'rb') as f:
+    object_cols = pickle.load(f)
 
 sample_test = pd.read_csv('sample_test.csv')
 
@@ -14,8 +18,16 @@ from flask import Flask, request, jsonify, render_template
 test = pd.read_csv('sample_test.csv')
 
 def cat_to_num(test):
+    print(test.columns)
     # HAVE TO PERFORM LABEL ENCODING MANUALLY
-    
+    cols = object_cols
+    # Convert object file into numeric value from dictionary that storeed in the simplified_version.ipynb
+    for col in cols:
+        print("Columns: ", col)
+        value = str(test[col].values).strip("'[]'")
+        test[col] = encoding_mapping[col][value]
+        print("value: ", value)
+        print("encoded value: ", test[col])
     print("Converted categorical data into numeric values")
     print("\n")
     return test
@@ -26,13 +38,6 @@ def drop_col(test):
     'BsmtFinType2', 'BsmtExposure', 'BsmtQual', 'BsmtCond', 'BsmtFinType1',
     'MasVnrArea', 'MasVnrType']
     test = test.drop(columns=cols)
-    return test
-
-def drop_ID(test):
-    # Drop ID for both train and test datasets.
-    test.drop(columns='Id', inplace=True)
-    print("Dropped ID in train and test")
-    print("\n")
     return test
 
 def predict(x):
@@ -49,34 +54,26 @@ def index():
 def process():
     # Get user input from index.html
     inputs={}
+    print(object_cols)
     for col in sample_test.columns:
         if col == 'Id':
             continue
         else:
             input = request.form.get(col)
             inputs.update({col:input})
-    print("Loaded all the inputs")
 
     # # Convert user inputs into DataFrame form
     inputs_to_csv = pd.DataFrame(inputs, index=[0])
-    print("Convert inputs into Dataframe format")
-    print("Input:")
-    print(inputs_to_csv.head())
-
-    # Perform prediction
-    result_cat_to_num = cat_to_num(inputs_to_csv)
-    print("Performed conversion categorical values into numeric")
-    print("After performing Label Encoding: ")
-    print(result_cat_to_num.head())
 
     # Drop unnecessary columns
-    result_drop_col = drop_col(result_cat_to_num)
-    print("Drop unnecessary columns")
+    result_drop_col = drop_col(inputs_to_csv)
 
+    result_cat_to_num = cat_to_num(result_drop_col)
+    
     # Save the user inputs
     result_drop_col.to_csv("test_cols.csv", index=False)
 
-    result_pred = predict(result_drop_col)
+    result_pred = predict(result_cat_to_num)
     print("Successfully predicted value")
     print("Result: ", result_pred)
 
