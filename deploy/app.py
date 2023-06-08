@@ -18,12 +18,11 @@ from flask import Flask, request, jsonify, render_template
 test = pd.read_csv('sample_test.csv')
 
 def cat_to_num(test):
-    print(test.columns)
     # HAVE TO PERFORM LABEL ENCODING MANUALLY
     cols = object_cols
     # Convert object file into numeric value from dictionary that storeed in the simplified_version.ipynb
     for col in cols:
-        print("Columns: ", col)
+        print("Current Column is: ", col)
         value = str(test[col].values).strip("'[]'")
         test[col] = encoding_mapping[col][value]
         print("value: ", value)
@@ -54,7 +53,6 @@ def index():
 def process():
     # Get user input from index.html
     inputs={}
-    print(object_cols)
     for col in sample_test.columns:
         if col == 'Id':
             continue
@@ -63,7 +61,10 @@ def process():
             inputs.update({col:input})
 
     # # Convert user inputs into DataFrame form
-    inputs_to_csv = pd.DataFrame(inputs, index=[0])
+    inputs_to_csv = pd.DataFrame(sample_test, index=[0])
+
+    # # Convert user inputs into DataFrame form
+    # inputs_to_csv = pd.DataFrame(inputs, index=[0])
 
     # Drop unnecessary columns
     result_drop_col = drop_col(inputs_to_csv)
