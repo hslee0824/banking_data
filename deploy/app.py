@@ -39,9 +39,13 @@ def drop_col(test):
     test = test.drop(columns=cols)
     return test
 
+def check_null(test):
+    print(test.isnull().sum())
+
 def predict(x):
     predictions = model.predict(x)
     return predictions
+
 
 app = Flask(__name__)
 
@@ -68,6 +72,8 @@ def process():
 
     result_cat_to_num = cat_to_num(result_drop_col)
     
+    # Check null values
+    check_null(result_cat_to_num)
     # Save the user inputs
     result_drop_col.to_csv("test_cols.csv", index=False)
 
