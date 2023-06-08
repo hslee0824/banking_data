@@ -60,11 +60,8 @@ def process():
             input = request.form.get(col)
             inputs.update({col:input})
 
-    # # Convert user inputs into DataFrame form
-    inputs_to_csv = pd.DataFrame(sample_test, index=[0])
-
-    # # Convert user inputs into DataFrame form
-    # inputs_to_csv = pd.DataFrame(inputs, index=[0])
+    # Convert user inputs into DataFrame form
+    inputs_to_csv = pd.DataFrame(inputs, index=[0])
 
     # Drop unnecessary columns
     result_drop_col = drop_col(inputs_to_csv)
