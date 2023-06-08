@@ -15,8 +15,6 @@ sample_test = pd.read_csv('sample_test.csv')
 
 from flask import Flask, request, jsonify, render_template
 
-test = pd.read_csv('sample_test.csv')
-
 def cat_to_num(test):
     # HAVE TO PERFORM LABEL ENCODING MANUALLY
     cols = object_cols
@@ -27,6 +25,8 @@ def cat_to_num(test):
         test[col] = encoding_mapping[col][value]
         print("value: ", value)
         print("encoded value: ", test[col])
+
+    
     print("Converted categorical data into numeric values")
     print("\n")
     return test
@@ -40,7 +40,17 @@ def drop_col(test):
     return test
 
 def check_null(test):
-    print(test.isnull().sum())
+
+    # Check for null values in each column
+    null_columns = test.columns[test.isnull().any()].tolist()
+
+    # Print the columns with null values
+    if null_columns:
+        print("Columns with null values:")
+        for col in null_columns:
+            print(test[col])
+    else:
+        print("No columns with null values")
 
 def predict(x):
     predictions = model.predict(x)
@@ -67,6 +77,10 @@ def process():
     # Convert user inputs into DataFrame form
     inputs_to_csv = pd.DataFrame(inputs, index=[0])
 
+    # CAUTION! This is for mismatch between train.columns and data description
+    inputs_to_csv = inputs_to_csv.rename(columns={'BedroomAbvGr': 'Bedroom'})
+    inputs_to_csv = inputs_to_csv.rename(columns={'KitchenAbvGr': 'Kitchen'})
+    print(inputs_to_csv['Bedroom'])
     # Drop unnecessary columns
     result_drop_col = drop_col(inputs_to_csv)
 
