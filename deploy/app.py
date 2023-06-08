@@ -23,8 +23,8 @@ def cat_to_num(test):
         print("Current Column is: ", col)
         value = str(test[col].values).strip("'[]'")
         test[col] = encoding_mapping[col][value]
-        print("value: ", value)
-        print("encoded value: ", test[col])
+        # print("value: ", value)
+        # print("encoded value: ", test[col])
 
     
     print("Converted categorical data into numeric values")
@@ -80,7 +80,7 @@ def process():
     # CAUTION! This is for mismatch between train.columns and data description
     inputs_to_csv = inputs_to_csv.rename(columns={'BedroomAbvGr': 'Bedroom'})
     inputs_to_csv = inputs_to_csv.rename(columns={'KitchenAbvGr': 'Kitchen'})
-    print(inputs_to_csv['Bedroom'])
+    
     # Drop unnecessary columns
     result_drop_col = drop_col(inputs_to_csv)
 
