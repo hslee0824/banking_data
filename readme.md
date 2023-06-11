@@ -16,22 +16,7 @@
 ### Detail description for input:
 #### The description of all the columns stored in "/building_model/train_test_results" folder
 #### We restricted user inputs in the following form:
-#### {'MSSubClass': {'120': 0,
-####  '150': 1,
-####  '160': 2,
-####  '180': 3,
-####  '190': 4,
-####  '20': 5,
-####  '30': 6,
-####  '40': 7,
-####  '45': 8,
-####  '50': 9,
-####  '60': 10,
-####  '70': 11,
-####  '75': 12,
-  '80': 13,
-  '85': 14,
-  '90': 15},
+#### {'MSSubClass': {'120': 0, '150': 1, '160': 2, '180': 3,'190': 4, '20': 5, '30': 6, '40': 7, '45': 8, '50': 9, '60': 10, '70': 11, '75': 12, '80': 13, '85': 14, '90': 15},
  'MSZoning': {'C (all)': 0, 'FV': 1, 'RH': 2, 'RL': 3, 'RM': 4},
  'Street': {'Grvl': 0, 'Pave': 1},
  'LotShape': {'IR1': 0, 'IR2': 1, 'IR3': 2, 'Reg': 3},
