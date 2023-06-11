@@ -17,13 +17,13 @@
 #### The description of all the columns stored in "/building_model/train_test_results" folder
 #### We restricted user inputs in the following form:
 #### {'MSSubClass': {'120': 0, '150': 1, '160': 2, '180': 3,'190': 4, '20': 5, '30': 6, '40': 7, '45': 8, '50': 9, '60': 10, '70': 11, '75': 12, '80': 13, '85': 14, '90': 15}
-#### 'MSZoning': {'C (all)': 0, 'FV': 1, 'RH': 2, 'RL': 3, 'RM': 4},
-#### 'Street': {'Grvl': 0, 'Pave': 1},
-#### 'LotShape': {'IR1': 0, 'IR2': 1, 'IR3': 2, 'Reg': 3},
-#### 'LandContour': {'Bnk': 0, 'HLS': 1, 'Low': 2, 'Lvl': 3},
-#### 'Utilities': {'AllPub': 0, 'NoSeWa': 1},
-#### 'LotConfig': {'Corner': 0, 'CulDSac': 1, 'FR2': 2, 'FR3': 3, 'Inside': 4},
-#### 'LandSlope': {'Gtl': 0, 'Mod': 1, 'Sev': 2},
+#### 'MSZoning': {'C (all)': 0, 'FV': 1, 'RH': 2, 'RL': 3, 'RM': 4}
+#### 'Street': {'Grvl': 0, 'Pave': 1}
+#### 'LotShape': {'IR1': 0, 'IR2': 1, 'IR3': 2, 'Reg': 3}
+#### 'LandContour': {'Bnk': 0, 'HLS': 1, 'Low': 2, 'Lvl': 3}
+#### 'Utilities': {'AllPub': 0, 'NoSeWa': 1}
+#### 'LotConfig': {'Corner': 0, 'CulDSac': 1, 'FR2': 2, 'FR3': 3, 'Inside': 4}
+#### 'LandSlope': {'Gtl': 0, 'Mod': 1, 'Sev': 2}
 #### 'Neighborhood': {'Blmngtn': 0, 'Blueste': 1, 'BrDale': 2, 'BrkSide': 3, 'ClearCr': 4, 'CollgCr': 5, 'Crawfor': 6, 'Edwards': 7, 'Gilbert': 8, 'IDOTRR': 9, 'MeadowV': 10, 'Mitchel': 11, 'NAmes': 12, 'NPkVill': 13, 'NWAmes': 14, 'NoRidge': 15, 'NridgHt': 16, 'OldTown': 17, 'SWISU': 18, 'Sawyer': 19, 'SawyerW': 20, 'Somerst': 21, 'StoneBr': 22, 'Timber': 23, 'Veenker': 24}
 #### 'Condition1': {'Artery': 0, 'Feedr': 1, 'Norm': 2, 'PosA': 3, 'PosN': 4, 'RRAe': 5, 'RRAn': 6, 'RRNe': 7, 'RRNn': 8}
 #### 'Condition2': {'Artery': 0, 'Feedr': 1, 'Norm': 2, 'PosA': 3, 'PosN': 4, 'RRAe': 5, 'RRAn': 6, 'RRNn': 7}
