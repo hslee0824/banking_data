@@ -1,6 +1,6 @@
 ## house price prediction
 ### link: https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview/evaluation
-
+--------
 #### "building_model": All the necessary files for the buidling model
 ##### model built by simplified_version.ipynb
 ##### train, test and result files are stored in the "train_test_results_datasets" folder
