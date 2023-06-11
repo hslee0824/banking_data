@@ -1,14 +1,13 @@
 import pickle
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from lightgbm import LGBMRegressor
 import io
 
-with open('../test/simplified_model_rf.pkl', 'rb') as f:
+with open('../building_model/pkl_files/simplified_model_rf.pkl', 'rb') as f:
     model = pickle.load(f)
-with open('../test/encoding_mapping.pkl', 'rb') as f:
+with open('../building_model/pkl_files/encoding_mapping.pkl', 'rb') as f:
     encoding_mapping = pickle.load(f)
-with open('../test/object_cols.pkl', 'rb') as f:
+with open('../building_model/pkl_files/object_cols.pkl', 'rb') as f:
     object_cols = pickle.load(f)
 
 sample_test = pd.read_csv('sample_test.csv')
@@ -88,8 +87,9 @@ def process():
     
     # Check null values
     check_null(result_cat_to_num)
+
     # Save the user inputs
-    result_drop_col.to_csv("test_cols.csv", index=False)
+    result_drop_col.to_csv("user_input.csv", index=False)
 
     result_pred = predict(result_cat_to_num)
     print("Successfully predicted value")
