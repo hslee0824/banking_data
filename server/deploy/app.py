@@ -100,8 +100,7 @@ def process():
     except:
         # Check the response status code
         print("Could not send result to the client side")
-    
 
-    return render_template("result.html", result_pred=result_pred)
+    return render_template("result.html")
 if __name__ == "__main__":
     app.run(debug=True)
