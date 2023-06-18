@@ -6,10 +6,10 @@ url = 'https://house-price-prediction-1e0q.onrender.com/process'
 
 # Define the data to send
 data = {
-    'OverallQual': '10',
+    'OverallQual': '1',
     'GrLivArea': '100',
-    'TotalBsmtSF' : '100',
-    'BsmtFinSF1' : '100',
+    'TotalBsmtSF' : '1',
+    'BsmtFinSF1' : '1',
     '1stFlrSF' : '100', 
     '2ndFlrSF' : '100',
     'GarageArea' : '100', 
