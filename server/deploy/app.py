@@ -9,6 +9,8 @@ with open('../building_model/pkl_files/encoding_mapping.pkl', 'rb') as f:
     encoding_mapping = pickle.load(f)
 with open('../building_model/pkl_files/object_cols.pkl', 'rb') as f:
     object_cols = pickle.load(f)
+with open('../building_model/pkl_files/top_11_features.pkl', 'rb') as f:
+    top_11_features = pickle.load(f)
 
 sample_test = pd.read_csv('sample_test.csv')
 
@@ -19,23 +21,17 @@ def cat_to_num(test):
     cols = object_cols
     # Convert object file into numeric value from dictionary that storeed in the simplified_version.ipynb
     for col in cols:
-        print("Current Column is: ", col)
-        value = str(test[col].values).strip("'[]'")
-        test[col] = encoding_mapping[col][value]
-        # print("value: ", value)
-        # print("encoded value: ", test[col])
-
-    
-    print("Converted categorical data into numeric values")
-    print("\n")
+        try:
+            value = str(test[col].values).strip("'[]'")
+            test[col] = encoding_mapping[col][value]
+            print(col, "column is categorical value")
+        except:
+            print(col, "column is not in the dataframe")
     return test
 
-def drop_col(test):
-    cols = ['PoolQC', 'MiscFeature', 'Alley', 'Fence', 'FireplaceQu', 'LotFrontage',
-    'GarageYrBlt', 'GarageCond', 'GarageType', 'GarageFinish', 'GarageQual',
-    'BsmtFinType2', 'BsmtExposure', 'BsmtQual', 'BsmtCond', 'BsmtFinType1',
-    'MasVnrArea', 'MasVnrType']
-    test = test.drop(columns=cols)
+def select_top_11_features(test):
+    cols = top_11_features
+    test = test.loc[:, cols]
     return test
 
 def check_null(test):
@@ -81,7 +77,8 @@ def process():
     inputs_to_csv = inputs_to_csv.rename(columns={'KitchenAbvGr': 'Kitchen'})
     
     # Drop unnecessary columns
-    result_drop_col = drop_col(inputs_to_csv)
+    result_drop_col = select_top_11_features(inputs_to_csv)
+    print(result_drop_col)
 
     result_cat_to_num = cat_to_num(result_drop_col)
     
@@ -95,6 +92,7 @@ def process():
     print("Successfully predicted value")
     print("Result: ", result_pred)
 
+    # !!return value to res.json?!!
     return render_template("result.html", result_pred=result_pred)
 if __name__ == "__main__":
     app.run(debug=True)

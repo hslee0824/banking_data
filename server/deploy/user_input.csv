@@ -1,2 +1,2 @@
-MSSubClass,MSZoning,LotArea,Street,LotShape,LandContour,Utilities,LotConfig,LandSlope,Neighborhood,Condition1,Condition2,BldgType,HouseStyle,OverallQual,OverallCond,YearBuilt,YearRemodAdd,RoofStyle,RoofMatl,Exterior1st,Exterior2nd,ExterQual,ExterCond,Foundation,BsmtFinSF1,BsmtFinSF2,BsmtUnfSF,TotalBsmtSF,Heating,HeatingQC,CentralAir,Electrical,1stFlrSF,2ndFlrSF,LowQualFinSF,GrLivArea,BsmtFullBath,BsmtHalfBath,FullBath,HalfBath,Bedroom,Kitchen,KitchenQual,TotRmsAbvGrd,Functional,Fireplaces,GarageCars,GarageArea,PavedDrive,WoodDeckSF,OpenPorchSF,EnclosedPorch,3SsnPorch,ScreenPorch,PoolArea,MiscVal,MoSold,YrSold,SaleType,SaleCondition
-0,2,200,0,0,0,0,0,0,0,0,0,0,1,10,10,2010,2010,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,200,200,200,0,0,0,0,100,100,0,10000,0,2,3,1000,2,1000,1000,1000,100,100,1000,10,0,4,0,0
+OverallQual,GrLivArea,TotalBsmtSF,BsmtFinSF1,1stFlrSF,2ndFlrSF,GarageArea,LotArea,GarageCars,YearBuilt,TotRmsAbvGrd
+10,200,0,0,100,200,1000,200,3,2010,3
