@@ -61,6 +61,11 @@ def index():
 @app.route("/process", methods=["POST"])
 def process():
     # Get user input from index.html
+
+    # Have to be modified as getting input from json file.
+    # get inputs from client side
+    data = request.form
+    print(data)
     inputs={}
     for col in sample_test.columns:
         if col == 'Id':
