@@ -24,9 +24,9 @@ def cat_to_num(test):
         try:
             value = str(test[col].values).strip("'[]'")
             test[col] = encoding_mapping[col][value]
-            print(col, "column is categorical value")
+            # print(col, "column is categorical value")
         except:
-            print(col, "column is not in the dataframe")
+            continue
     return test
 
 def select_top_11_features(test):
@@ -60,12 +60,7 @@ def index():
 
 @app.route("/process", methods=["POST"])
 def process():
-    # Get user input from index.html
-
-    # Have to be modified as getting input from json file.
-    # get inputs from client side
-    data = request.form
-    print(data)
+    # Get user input from post method
     inputs={}
     for col in sample_test.columns:
         if col == 'Id':
