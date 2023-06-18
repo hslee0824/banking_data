@@ -1,7 +1,8 @@
 import requests
 
 # Define the URL of the server
-url = 'http://127.0.0.1:5000/process'  # Replace with the actual server URL
+url = 'https://house-price-prediction-1e0q.onrender.com/process' 
+url = 'http://127.0.0.1:5000/process'
 
 # Define the data to send
 data = {
@@ -16,7 +17,6 @@ data = {
     'YearBuilt' : '2020',
     'GarageCars' : '3',
     'TotRmsAbvGrd' : '3'
-    # Add more key-value pairs as needed
 }
 
 # Send the POST request

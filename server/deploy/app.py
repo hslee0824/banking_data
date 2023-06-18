@@ -2,6 +2,7 @@ import pickle
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import io
+import requests
 
 with open('../building_model/pkl_files/simplified_model_rf.pkl', 'rb') as f:
     model = pickle.load(f)
@@ -92,7 +93,15 @@ def process():
     print("Successfully predicted value")
     print("Result: ", result_pred)
 
-    # !!return value to res.json?!!
+    # Sending Result to Client side # 
+    try:
+        url = 'https:client'    # Have to modify
+        response = requests.post(url, data=result_pred)
+    except:
+        # Check the response status code
+        print("Could not send result to the client side")
+    
+
     return render_template("result.html", result_pred=result_pred)
 if __name__ == "__main__":
     app.run(debug=True)
